@@ -1,12 +1,11 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
-  console.log('env: ', mode, command)
   return {
     plugins: [
       vue(),
@@ -31,8 +30,8 @@ export default defineConfig(({ command, mode }) => {
       outDir: isProd ? 'dist' : 'dist-dev',
       assetsDir: 'assets',
       cssCodeSplit: false,
-      sourcemap: isProd,
+      sourcemap: false,
       minify: isProd,
     }
-  }
+  };
 });

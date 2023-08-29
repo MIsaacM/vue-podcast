@@ -6,12 +6,15 @@ module.exports = {
   'extends': [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@vue/eslint-config-prettier/skip-formatting'
+    '@vue/eslint-config-prettier/skip-formatting',
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
   },
   rules: {
     semi: [1, 'always'],
-  }
+    quotes: [1, 'single'],
+    indent: [1, 2],
+    'comma-dangle': [2, 'always-multiline'],
+  },
 };
