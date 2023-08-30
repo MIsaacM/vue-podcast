@@ -12,11 +12,13 @@ const router = createRouter({
       path: '/podcast/:podcastId',
       name: 'podcast',
       component: () => import('../views/PodcastView.vue'),
-    },
-    {
-      path: '/podcast/:podcastId/episode/:episodeId',
-      name: 'episode',
-      component: () => import('../views/EpisodeView.vue'),
+      children: [
+        {
+          path: 'episode/:episodeId',
+          name: 'episode',
+          component: () => import('../views/EpisodeView.vue'),
+        },
+      ],
     },
   ],
 });

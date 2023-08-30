@@ -12,9 +12,11 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    semi: [1, 'always'],
-    quotes: [1, 'single'],
-    indent: [1, 2],
-    'comma-dangle': [2, 'always-multiline'],
+    semi: [ 1, 'always' ],
+    quotes: [ 1, 'single' ],
+    indent: [ 1, 2 ],
+    'comma-dangle': [ 2, 'always-multiline' ],
+    'object-curly-spacing': [ 1, 'always' ],
+    'array-bracket-spacing': [ 1, 'always' ],
   },
 };
