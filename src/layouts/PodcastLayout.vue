@@ -1,13 +1,21 @@
 <template>
-  <PodcastCard />
+  <PodcastDetailedCard :podcastId="podcastId" />
   <slot />
 </template>
 
 <script>
-import PodcastCard from '../components/PodcastDetailedCard.vue';
+import PodcastDetailedCard from '../components/PodcastDetailedCard.vue';
 
 export default {
-  components: { PodcastCard },
+  components: { PodcastDetailedCard },
+  data() {
+    return {
+      podcastId: null,
+    };
+  },
+  created() { 
+    this.podcastId = this.$route.params.podcastId;
+  },
 };
 </script>
 

@@ -1,9 +1,11 @@
 <template>
-  <div class="podcast_card">
-    <RouterLink :to="{ path: `/podcast/1` }">
-      <div class="podcast_card-img">Image</div>
-      <div class="podcast_card-title">Title</div>
-      <div class="podcast_card-author">Author</div>
+  <div class="podcast_card" v-if="podcastId">
+    <RouterLink :to="{ name: 'podcast', params: { podcastId } }">
+      <div class="podcast_card-img">
+        <img :src="getImage" />
+      </div>
+      <div class="podcast_card-title">{{ getTitle }}</div>
+      <div class="podcast_card-author">{{ getAuthor }}</div>
     </RouterLink>
   </div>
 </template>
@@ -13,6 +15,26 @@ import { RouterLink } from 'vue-router';
 
 export default {
   components: { RouterLink },
+  props: [ 'podcastId' ],
+  data() {
+    return {
+      podcast: {},
+    };
+  },
+  computed: {
+    getImage() {
+      return this.podcast?.artworkUrl600 || '';
+    },
+    getTitle() {
+      return this.podcast?.collectionName || 'Unknown title';
+    },
+    getAuthor() {
+      return this.podcast?.artistName || 'Unknown Author';
+    },
+  },
+  async beforeMount() {
+    this.podcast = await this.$store.actions.fetchPodcast(this.podcastId);
+  },
 };
 </script>
 

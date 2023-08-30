@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  beforeMount() {
+    setTimeout(() => {
+      
+    }, 5000);
+  },
+};
 </script>
 
 <style scoped>
@@ -16,5 +22,8 @@ export default {};
 }
 [v-cloak] {
   display: none;
+}
+[v-cloak]::before {
+  display: block;
 }
 </style>
