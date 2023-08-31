@@ -38,13 +38,11 @@ class Router {
   }
 
   setAfterEach(store) {
-    this.router.afterEach((to, from, next) => {
+    this.router.afterEach(() => {
       store.state.loadingRoute = false;
       // setTimeout(() => {
       //   store.state.loadingRoute = false;
       // }, 2000);
-      
-      next();
     });
   }
 }
