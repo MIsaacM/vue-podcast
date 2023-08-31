@@ -1,6 +1,8 @@
 <template>
   <div :class="[ 'loading_status', { show: loadingRoute || loadingData } ]">
-    Loading...
+    <div>
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -22,7 +24,7 @@ export default {
   display: none;
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 30px;
   animation: pulses 1s linear infinite alternate;
 }
 .loading_status.show {
@@ -31,5 +33,26 @@ export default {
 @keyframes pulses {
   from {opacity: 0;}
   to {opacity: 1;}
+}
+.loading_status div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--color-secondary);
+  border-radius: 100%;
+  animation: color .5s linear infinite alternate;
+}
+.loading_status div div {
+  width: 5px;
+  height: 5px;
+  border: 3px solid var(--color-secondary);
+  border-radius: 100%;
+  animation: color .5s linear infinite alternate;
+}
+@keyframes color {
+  from {border: 3px solid var(--color-secondary);}
+  to {border: 3px solid var(--color-primary);}
 }
 </style>
