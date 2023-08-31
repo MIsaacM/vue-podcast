@@ -1,16 +1,16 @@
 <template>
   <MainLayout>
-    Main View
-
-    <div>
+    <div class="main_view-filter">
       <span>Showing {{ filteredPodcasts.length }} of {{ podcasts.length }}</span> <input type="text" placeholder="Filter podcasts..." v-model="filterText" />
     </div>
 
-    <PodcastCard 
+    <div class="main_view-podcast_gallery">
+      <PodcastCard 
       v-for="podcast in filteredPodcasts" 
       :key="getPodcastId(podcast)" 
       :podcastId="getPodcastId(podcast)"
-    />
+      />
+    </div>
   </MainLayout>
 </template>
 
@@ -55,4 +55,26 @@ export default {
 </script>
 
 <style scoped>
+.main_view-filter {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}
+.main_view-filter span {
+  padding: 0 5px;
+  border-radius: 5px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+.main_view-podcast_gallery {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 50px 20px;
+  margin: 50px 0;
+}
 </style>

@@ -19,8 +19,19 @@ export default {
 
 <style scoped>
 .main_header {
-  padding: 5px 10px;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0px 5px 5px #ccc;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px var(--color-border);
+}
+.main_header-logo a {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: bold;
+  transition: all .2s;
+}
+.main_header-logo a:hover {
+  color: var(--color-secondary);
 }
 </style>

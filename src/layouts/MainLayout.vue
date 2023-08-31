@@ -14,4 +14,9 @@ export default {
 </script>
 
 <style scoped>
+main {
+  margin: 20px auto;
+  max-width: 1600px;
+  padding: 20px;
+}
 </style>
