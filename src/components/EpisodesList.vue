@@ -1,18 +1,18 @@
 <template>
-  <table>
+  <table class="episodes_list-table">
     <tr>
-      <th>Title</th>
-      <th>Date</th>
-      <th>Duration</th>
+      <th class="episodes_list-table-header-title">Title</th>
+      <th class="episodes_list-table-header-release_date">Date</th>
+      <th class="episodes_list-table-header-duration">Duration</th>
     </tr>
     <tr v-for="episode in podcastEpisodes" :key="episode.trackId">
-      <td>
+      <td class="episodes_list-table-names">
         <RouterLink :to="{ name: 'episode', params: { podcastId, episodeId: episode.trackId } }">
           {{ episode.trackName }}
         </RouterLink>
       </td>
-      <td>{{ formatReleaseDate(episode.releaseDate)}}</td>
-      <td>{{ formatDuration(episode.trackTimeMillis) }}</td>
+      <td class="episodes_list-table-release_dates">{{ formatReleaseDate(episode.releaseDate)}}</td>
+      <td class="episodes_list-table-durations">{{ formatDuration(episode.trackTimeMillis) }}</td>
     </tr>
   </table>
 </template>
@@ -49,4 +49,33 @@ export default {
 </script>
 
 <style scoped>
+.episodes_list-table {
+  border-collapse: collapse;
+}
+.episodes_list-table th {
+  width: 100%;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.episodes_list-table tr {
+  border-bottom: 1px solid var(--color-border);
+}
+.episodes_list-table tr:nth-child(even) {
+  background: rgba(200,200,200,.2);
+}
+.episodes_list-table td {
+  padding: 5px 10px;
+}
+.episodes_list-table-header-title {
+  text-align: left;
+}
+.episodes_list-table-header-release_date, 
+.episodes_list-table-header-duration, 
+.episodes_list-table-release_dates, 
+.episodes_list-table-durations {
+  text-align: center;
+}
+.episodes_list-table-names a:hover {
+  color: var(--color-primary);
+}
 </style>

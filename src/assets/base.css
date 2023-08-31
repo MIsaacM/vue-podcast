@@ -43,3 +43,9 @@ input {
 .text-center {
   text-align: center;
 }
+
+.card {
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 2px 5px var(--color-border);
+}

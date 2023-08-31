@@ -1,7 +1,8 @@
 <template>
-    Podcast View
-    <div>Episodes: {{ podcastEpisodes.length === 501 ? '500+' : podcastEpisodes.length }}</div>
-    <div><EpisodesList :podcastId="podcastId" /></div>
+  <div class="podcast_view">
+    <div class="podcast_view-episodes_count card">Episodes: {{ podcastEpisodes.length === 501 ? '500+' : podcastEpisodes.length }}</div>
+    <div class="podcast_view-episodes_list card"><EpisodesList :podcastId="podcastId" /></div>
+  </div>
 </template>
 
 <script>
@@ -26,4 +27,13 @@ export default {
 </script>
 
 <style scoped>
+.podcast_view {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+.podcast_view-episodes_count {
+  font-weight: bold;
+  font-size: 20px;
+}
 </style>
