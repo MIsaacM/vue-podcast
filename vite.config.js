@@ -12,8 +12,8 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
     server: {
       host: 'localhost',
@@ -22,9 +22,9 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: 'IP/URL',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        }
-      }
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     },
     build: {
       outDir: isProd ? 'dist' : 'dist-dev',
@@ -32,6 +32,6 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: false,
       sourcemap: false,
       minify: isProd,
-    }
+    },
   };
 });
