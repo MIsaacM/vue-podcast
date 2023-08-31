@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ 'loading_status', { show: loadingRoute } ]">
+  <div :class="[ 'loading_status', { show: loadingRoute || loadingData } ]">
     Loading...
   </div>
 </template>
@@ -10,8 +10,8 @@ export default {
     loadingRoute() {
       return this.$store.state.loadingRoute;
     },
-    loadingRoute2() {
-      return this.$root.loadingRoute;
+    loadingData() {
+      return this.$store.state.loadingData;
     },
   },
 };
