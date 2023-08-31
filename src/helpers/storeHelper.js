@@ -3,7 +3,7 @@ import { parse } from 'rss-to-json';
 import Axios from './axiosHelper';
 
 const state = reactive({
-  loading: false,
+  loadingRoute: false,
   podcastList: [],
   podcastDetailsList: {},
 });

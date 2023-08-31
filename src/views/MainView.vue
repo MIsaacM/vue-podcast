@@ -3,7 +3,7 @@
     Main View
 
     <div>
-      <span>{{ podcasts.length }}</span> <input type="text" placeholder="Filter podcasts..." v-model="filterText" />
+      <span>Showing {{ filteredPodcasts.length }} of {{ podcasts.length }}</span> <input type="text" placeholder="Filter podcasts..." v-model="filterText" />
     </div>
 
     <PodcastCard 
@@ -35,9 +35,9 @@ export default {
       if (!this.filterText) return this.podcasts;
 
       return this.podcasts.filter(podcast => {
-        const filterNormalized = this.filterText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        const podcastNameNormalized = podcast['im:name']?.label?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') || '';
-        const podcastAuthorNormalized = podcast['im:artist']?.label?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') || '';
+        const filterNormalized = this.$utils.normalizeString(this.filterText);
+        const podcastNameNormalized = this.$utils.normalizeString(podcast['im:name']?.label);
+        const podcastAuthorNormalized = this.$utils.normalizeString(podcast['im:artist']?.label);
         
         return podcastNameNormalized.includes(filterNormalized) || podcastAuthorNormalized.includes(filterNormalized);
       });
