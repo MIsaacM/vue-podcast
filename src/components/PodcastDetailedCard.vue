@@ -18,13 +18,14 @@ export default {
   components: { RouterLink },
   data() {
     return {
-      podcastId: null,
       podcast: {},
       feed: {},
     };
   },
-  created() { 
-    this.podcastId = this.$route.params.podcastId;
+  computed: { 
+    podcastId() {
+      return this.$route.params.podcastId;
+    },
   },
   async beforeMount() {
     this.podcast = await this.$store.actions.fetchPodcast(this.podcastId);

@@ -18,7 +18,7 @@ const actions = {
   },
   async fetchPodcast(podcastId) {
     if (!podcastId) {
-      console.error('"podcastId" is mandatory to look for a podcast!');
+      console.error('"podcastId" is mandatory to look for a podcast');
       return {};
     }
     const axios = new Axios({ baseURL: 'https://api.allorigins.win/raw?url=' });
@@ -26,12 +26,11 @@ const actions = {
     const podcast = podcastResponse?.data?.results?.length && podcastResponse.data.results[0] || [];
     // collectionId = podcastId
     state.podcastDetailsList[podcast.collectionId] = podcast;
-    console.log('...',podcast)
     return podcast;
   },
   async fetchPodcastEpisodes(podcastId, limit = 500) {
     if (!podcastId) {
-      console.error('"podcastId" is mandatory to look for the list of podcast episodes!');
+      console.error('"podcastId" is mandatory to look for the list of podcast episodes');
       return [];
     }
     const axios = new Axios({ baseURL: 'https://api.allorigins.win/raw?url=' });
@@ -41,7 +40,7 @@ const actions = {
   },
   async fetchFeed(url) {
     if (!url) {
-      console.error('"url" is mandatory to get url feed!');
+      console.error('"url" is mandatory to get url feed');
       return {};
     }
     const jsonFeed = await parse(url);

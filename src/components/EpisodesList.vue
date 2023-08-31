@@ -21,14 +21,15 @@
 import moment from 'moment';
 
 export default {
-  data() { 
+  data() {
     return {
-      podcastId: null,
       podcastEpisodes: [],
     };
   },
-  created() { 
-    this.podcastId = this.$route.params.podcastId;
+  computed: { 
+    podcastId() {
+      return this.$route.params.podcastId;
+    },
   },
   async beforeMount() {
     const podcast = await this.$store.actions.fetchPodcast(this.podcastId);

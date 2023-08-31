@@ -1,7 +1,7 @@
 <template>
   <div class="episode_card">
-    <div class="episode_card-title">Title</div>
-    <div class="episode_card-description">Description</div>
+    <div class="episode_card-title">{{ episode.trackName }}</div>
+    <div class="episode_card-description" v-html="feed.description"></div>
     <div class="episode_card-audio">
       <audio controls>
         <source src="" type="audio/mpeg">
@@ -12,7 +12,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      episodes: [],
+      feed: {},
+    };
+  },
+  computed: {
+    podcastId() {
+      return this.$route.params.podcastId;
+    },
+    episodeId() {
+      return this.$route.params.episodeId;
+    },
+    episode() {
+      return this.episodes.find(episode => episode.trackId == this.episodeId) || {};
+    },
+  },
+  async beforeMount() {
+    this.episodes = await this.$store.actions.fetchPodcastEpisodes(this.podcastId);
+    const podcast = await this.$store.actions.fetchPodcast(this.podcastId);
+    const feedUrl = podcast?.feedUrl || null;
+    this.feed = await this.$store.actions.fetchFeed(feedUrl);
+  },
+};
 </script>
 
 <style scoped>
