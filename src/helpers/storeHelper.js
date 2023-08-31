@@ -63,7 +63,7 @@ const actions = {
       return state.podcastDetailsList[podcastId];
     }
   },
-  async fetchPodcastEpisodes(podcastId, limit = 500) {
+  async fetchPodcastEpisodes(podcastId) {
     let episodes = [];
     try {
       if (!podcastId) {
@@ -72,10 +72,9 @@ const actions = {
       }
 
       state.loadingData = true;
-      const axios = new Axios({ baseURL: 'https://api.allorigins.win/raw?url=' });
-      const episodesResponse = await axios.instance.get(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=${limit}`);
-      episodes = episodesResponse?.data?.results?.length && episodesResponse?.data?.results || [];
-
+      const podcast = await this.fetchPodcast(podcastId);
+      const feed = await this.fetchFeed(podcast?.feedUrl || null);
+      episodes = feed?.items || [];
     } catch (error) {
       console.error({
         message: 'Error on fetchPodcastEpisodes',

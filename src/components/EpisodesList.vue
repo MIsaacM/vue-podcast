@@ -5,14 +5,14 @@
       <th class="episodes_list-table-header-release_date">Date</th>
       <th class="episodes_list-table-header-duration">Duration</th>
     </tr>
-    <tr v-for="episode in podcastEpisodes" :key="episode.trackId">
+    <tr v-for="episode in podcastEpisodes" :key="episode.id">
       <td class="episodes_list-table-names">
-        <RouterLink :to="{ name: 'episode', params: { podcastId, episodeId: episode.trackId } }">
-          {{ episode.trackName }}
+        <RouterLink :to="{ name: 'episode', params: { podcastId, episodeId: episode.id } }">
+          {{ episode.title }}
         </RouterLink>
       </td>
-      <td class="episodes_list-table-release_dates">{{ formatReleaseDate(episode.releaseDate)}}</td>
-      <td class="episodes_list-table-durations">{{ formatDuration(episode.trackTimeMillis) }}</td>
+      <td class="episodes_list-table-release_dates">{{ formatReleaseDate(episode.published)}}</td>
+      <td class="episodes_list-table-durations">{{ episode.itunes_duration }}</td>
     </tr>
   </table>
 </template>
@@ -32,12 +32,11 @@ export default {
     },
   },
   async beforeMount() {
-    const podcast = await this.$store.actions.fetchPodcast(this.podcastId);
-    this.podcastEpisodes = await this.$store.actions.fetchPodcastEpisodes(podcast.collectionId);
+    this.podcastEpisodes = await this.$store.actions.fetchPodcastEpisodes(this.podcastId);
   },
   methods: {
-    formatReleaseDate(date) {
-      return date ? moment(date).format('DD/MM/YYYY') : '00/00/0000';
+    formatReleaseDate(timestamp) {
+      return timestamp ? moment.unix(timestamp).format('DD/MM/YYYY') : '00/00/0000';
     },
     formatDuration(duration) {
       if (!duration) return '00:00';
