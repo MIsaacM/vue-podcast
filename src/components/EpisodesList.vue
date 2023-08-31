@@ -10,13 +10,11 @@
         <RouterLink :to="{ name: 'episode', params: { podcastId, episodeId: episode.trackId } }">
           {{ episode.trackName }}
         </RouterLink>
-          {{`${podcastId} - ${episode.trackId}` }}
       </td>
       <td>{{ formatReleaseDate(episode.releaseDate)}}</td>
       <td>{{ formatDuration(episode.trackTimeMillis) }}</td>
     </tr>
   </table>
-    <pre v-text="podcastEpisodes"/>
 </template>
 
 <script>

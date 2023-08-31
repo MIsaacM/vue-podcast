@@ -1,13 +1,17 @@
 <template>
-  <PodcastDetailedCard :podcastId="podcastId" />
-  <slot />
+  <MainLayout>
+    <PodcastDetailedCard :podcastId="podcastId" />
+    <RouterView />
+  </MainLayout>
 </template>
 
 <script>
+import { RouterView } from 'vue-router';
+import MainLayout from '../layouts/MainLayout.vue';
 import PodcastDetailedCard from '../components/PodcastDetailedCard.vue';
 
 export default {
-  components: { PodcastDetailedCard },
+  components: { RouterView, MainLayout, PodcastDetailedCard },
   data() {
     return {
       podcastId: null,

@@ -1,20 +1,14 @@
 <template>
-  <MainLayout>
     Podcast View
-    <PodcastLayout :podcastId="podcastId">
-      <div>Episodes: {{ podcastEpisodes.length === 501 ? '500+' : podcastEpisodes.length }}</div>
-      <div><EpisodesList :podcastId="podcastId" /></div>
-    </PodcastLayout>
-  </MainLayout>
+    <div>Episodes: {{ podcastEpisodes.length === 501 ? '500+' : podcastEpisodes.length }}</div>
+    <div><EpisodesList :podcastId="podcastId" /></div>
 </template>
 
 <script>
-import MainLayout from '../layouts/MainLayout.vue';
-import PodcastLayout from '../layouts/PodcastLayout.vue';
 import EpisodesList from '../components/EpisodesList.vue';
 
 export default {
-  components: { MainLayout, PodcastLayout, EpisodesList },
+  components: { EpisodesList },
   data() { 
     return {
       podcastId: null,

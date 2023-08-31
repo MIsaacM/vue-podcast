@@ -9,12 +9,16 @@ const router = createRouter({
       component: () => import('../views/MainView.vue'),
     },
     {
-      path: '/podcast/:podcastId',
-      name: 'podcast',
-      component: () => import('../views/PodcastView.vue'),
+      path: '/podcast',
+      component: () => import('../layouts/PodcastLayout.vue'),
       children: [
         {
-          path: 'episode/:episodeId',
+          path: ':podcastId',
+          name: 'podcast',
+          component: () => import('../views/PodcastView.vue'),
+        },
+        {
+          path: ':podcastId/episode/:episodeId',
           name: 'episode',
           component: () => import('../views/EpisodeView.vue'),
         },
