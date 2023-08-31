@@ -1,5 +1,5 @@
 <template>
-  <div class="episode_card">
+  <div class="episode_card card">
     <div class="episode_card-title">{{ episode.trackName }}</div>
     <div class="episode_card-description" v-html="feed.description"></div>
     <div class="episode_card-audio">
@@ -40,4 +40,15 @@ export default {
 </script>
 
 <style scoped>
+.episode_card-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.episode_card-description {
+  font-style: italic;
+}
+audio {
+  width: 100%;
+  margin-top: 30px;
+}
 </style>

@@ -1,5 +1,4 @@
 <template>
-    Episode View
     <EpisodeCard />
 </template>
 
